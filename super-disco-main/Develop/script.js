@@ -1,79 +1,66 @@
-var currentDay = document.getElementById("currentDay")
-currentDay.textContent=moment().format('LLLL');
 
-var btn8 = document.getElementById("btn8")
-var text8= document.getElementById("text8")
-btn8.addEventListener("click", function(){
-  localStorage.setItem("text8", text8.value)
-})
-text8.value= localStorage.getItem("text8")
+const now = new Date();
 
-var btn9 = document.getElementById("btn9")
-var text9= document.getElementById("text9")
-btn9.addEventListener("click", function(){
-  localStorage.setItem("text9", text9.value)
-})
-text9.value= localStorage.getItem("text9")
+let currentDay = document.getElementById('currentDay');
+currentDay.textContent = now.toLocaleString();
 
-var btn10 = document.getElementById("btn10")
-var text10= document.getElementById("text10")
-btn10.addEventListener("click", function(){
-  localStorage.setItem("text10", text10.value)
-})
-text10.value= localStorage.getItem("text10")
+const morningTime = 8;
+const blockCount = 10;
 
-var btn11 = document.getElementById("btn11")
-var text11= document.getElementById("text11")
-btn11.addEventListener("click", function(){
-  localStorage.setItem("text11", text11.value)
-})
-text11.value= localStorage.getItem("text11")
+let container = document.getElementById('container');
 
-var btn12 = document.getElementById("btn12")
-var text12= document.getElementById("text12")
-btn12.addEventListener("click", function(){
-  localStorage.setItem("text12", text12.value)
-})
-text12.value= localStorage.getItem("text12")
+for (let hour = morningTime;
+     hour <= morningTime + blockCount;
+     hour++) {
 
-var btn13 = document.getElementById("btn13")
-var text13= document.getElementById("text13")
-btn13.addEventListener("click", function(){
-  localStorage.setItem("text13", text13.value)
-})
-text13.value= localStorage.getItem("text13")
+  let start = new Date();
+  start.setHours(hour, 0, 0, 0);
 
-var btn14 = document.getElementById("btn14")
-var text14= document.getElementById("text14")
-btn14.addEventListener("click", function(){
-  localStorage.setItem("text14", text14.value)
-})
-text14.value= localStorage.getItem("text14")
+  let end = new Date();
+  end.setHours(hour + 1, 0, 0, 0);
 
-var btn15 = document.getElementById("btn15")
-var text15= document.getElementById("text15")
-btn15.addEventListener("click", function(){
-  localStorage.setItem("text15", text15.value)
-})
-text15.value= localStorage.getItem("text15")
+  let timeBlockWrapper = document.createElement('div');
+  timeBlockWrapper.classList.add('time-block');
+  timeBlockWrapper.classList.add('row');
 
-var btn16 = document.getElementById("btn16")
-var text16= document.getElementById("text16")
-btn16.addEventListener("click", function(){
-  localStorage.setItem("text16", text16.value)
-})
-text16.value= localStorage.getItem("text16")
+  if (now > start && now < end) {
+    timeBlockWrapper.classList.add('present');
+  } else if (start < now) {
+    timeBlockWrapper.classList.add('past');
+  } else {
+    timeBlockWrapper.classList.add('future');
+  }
 
-var btn17 = document.getElementById("btn17")
-var text17= document.getElementById("text17")
-btn17.addEventListener("click", function(){
-  localStorage.setItem("text17", text17.value)
-})
-text17.value= localStorage.getItem("text17")
+  let label = document.createElement('label');
+  label.setAttribute('for', 'time');
+  label.textContent = hour;
+  label.classList.add('col');
+  timeBlockWrapper.appendChild(label);
+
+  let identifier = 'text' + hour;
+
+  let textArea = document.createElement('textarea');
+  timeBlockWrapper.appendChild(textArea);
+  textArea.setAttribute('id', identifier);
+  textArea.classList.add('time-block');
+  textArea.classList.add('col-md-10');
+  textArea.classList.add('col');
+
+  let b = document.createElement('button');
+  b.textContent = 'Save';
+  b.classList.add('btn');
+  b.classList.add('saveBtn');
+  b.classList.add('col-md-.5');
+  b.classList.add('col');
+
+  textArea.value= localStorage.getItem(identifier)
+  b.addEventListener("click", function() {
+    console.log(identifier);
+     localStorage.setItem(identifier, textArea.value);
+  })
+  timeBlockWrapper.appendChild(b);
 
 
-var hour = moment().hours()
-console.log(hour)
-
-
+  container.appendChild(timeBlockWrapper);
+}
 
