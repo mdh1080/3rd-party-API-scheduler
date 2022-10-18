@@ -6,8 +6,10 @@ A simple calendar app that allows a user to save events for each hour of the day
 
 ## Usage
 Web appearance of the application.
+![image](https://user-images.githubusercontent.com/110183347/196501399-3b4eb2b4-8973-4465-9270-163b4f14e090.png)
 
 Link to scheduler page. 
+https://mdh1080.github.io/3rd-party-API-scheduler/
 
 
 ## License
