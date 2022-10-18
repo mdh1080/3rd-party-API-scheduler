@@ -1,11 +1,13 @@
-# 3rd-party-API-schedule
+# 3rd-party-API-scheduler
 
 ## Description
 A simple calendar app that allows a user to save events for each hour of the day. This app runs in the browser and features dynamically updated HTML and CSS powered by jQuery. A person with a busy schedule can add important events to the daily planner and manage time efficiently. 
 
 
 ## Usage
-Screenshot of the application.
+Web appearance of the application.
+
+Link to scheduler page. 
 
 
 ## License
